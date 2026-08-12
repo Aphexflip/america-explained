@@ -3,13 +3,14 @@
 **Project:** AMERICA // EXPLAINED  
 **Date:** 2026-08-12  
 **Target domain:** `america.rsymo.com`  
-**Canonical repository:** `Aphexflip/america-explained`
+**Canonical repository:** `Aphexflip/america-explained`  
+**Current main commit:** `ae5c3a7698ea8ca3f5b50ffcdc392ae540c8ac0b`
 
 ## Current state
 
-The repository now exists and this MVP is being seeded as its initial project state.
+The canonical GitHub repository is initialized and the v0.1 MVP has been seeded to `main`.
 
-### Built
+### Built and committed
 
 - Zero-build, responsive static frontend in `public/`.
 - Premium dark/light visual system.
@@ -25,6 +26,14 @@ The repository now exists and this MVP is being seeded as its initial project st
 - Static authoritative JSON fallback while D1 is not configured.
 - `README.md`, `AGENTS.md`, `PROJECT_SPEC.md`, data model docs, and this checkpoint.
 - Cloudflare Pages config scaffold.
+
+## Validation completed
+
+- GitHub recursive tree verified after commit; all intended MVP files are present on `main`.
+- Stale unused root React scaffold `index.html` was removed before import.
+- `public/app.js` passes `node --check`.
+- `public/data/baseline.json` parses successfully.
+- `migrations/0001_initial.sql` executes successfully against SQLite in-memory validation.
 
 ## Authoritative seeded facts
 
@@ -42,17 +51,20 @@ BLS did not publish 2024 federal/state tax estimates or after-tax income in CE b
 
 ## Current blocker
 
-No code blocker. The next human/configuration work is Cloudflare deployment and D1 binding.
+No code blocker. Cloudflare account configuration is the next external step.
 
-## Exact next action
+## Exact next human action
 
-1. Connect `Aphexflip/america-explained` to Cloudflare Pages.
-2. Framework preset: **None**.
-3. Build command: **blank**.
-4. Build output directory: `public`.
-5. Create D1 database `america-explained-db`, bind it as `DB`, and apply `migrations/0001_initial.sql`.
-6. Verify `/api/baseline` returns D1-backed records.
-7. Point `america.rsymo.com` to the Pages project.
+Connect `Aphexflip/america-explained` to Cloudflare Pages:
+
+1. Cloudflare Dashboard → **Workers & Pages** → **Create** → **Pages** → **Connect to Git**.
+2. Select `Aphexflip/america-explained`.
+3. Framework preset: **None**.
+4. Build command: **blank**.
+5. Build output directory: `public`.
+6. Deploy the first Pages build.
+
+Then create D1 database `america-explained-db`, bind it as `DB`, apply `migrations/0001_initial.sql`, verify `/api/baseline`, and attach `america.rsymo.com`.
 
 ## Next product work after deployment
 
