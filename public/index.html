@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#07090d" />
+  <meta name="description" content="AMERICA // EXPLAINED — The cheat sheet nobody gave you." />
+  <title>AMERICA // EXPLAINED</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div>
+  <header class="topbar shell">
+    <a class="brand" href="#top" aria-label="America Explained home"><span>AMERICA</span><b>//</b><span>EXPLAINED</span></a>
+    <nav class="nav" aria-label="Primary">
+      <a href="#dashboard">Dashboard</a><a href="#hundred">$100</a><a href="#personalize">You</a><a href="#found">Found money</a>
+    </nav>
+    <button id="themeToggle" class="icon-button" type="button" aria-label="Toggle theme">◐</button>
+  </header>
+
+  <main id="top">
+    <section class="hero shell">
+      <div class="eyebrow"><span class="live-dot"></span> REAL DATA • PLAIN ENGLISH • ACTION NEXT</div>
+      <h1>The cheat sheet<br/><em>nobody gave you.</em></h1>
+      <p class="hero-copy">Where your money goes. What “normal” actually looks like. What you may be missing. And the next move that matters most.</p>
+      <div class="hero-actions"><a class="button primary" href="#personalize">MAKE THIS ABOUT ME <span>→</span></a><a class="button ghost" href="#dashboard">SEE THE U.S. BASELINE</a></div>
+      <div class="trust-row"><span>Sources: Census</span><span>BLS</span><span>IRS</span><span>SSA</span><span class="muted">No account required</span></div>
+    </section>
+
+    <section id="dashboard" class="section shell">
+      <div class="section-head"><div><div class="kicker">THE AMERICAN FINANCIAL DASHBOARD</div><h2>Start with reality.</h2></div><p>Median when “typical” matters. Mean only when the source actually reports a mean.</p></div>
+      <div id="metricGrid" class="metric-grid" aria-live="polite"></div>
+      <div class="source-strip"><span id="dataMode" class="pill">Loading data…</span><span>Every number carries its statistic type, source year, geography, and methodology.</span></div>
+    </section>
+
+    <section id="hundred" class="section shell hundred-section">
+      <div class="section-head"><div><div class="kicker">THE $100 VIEW</div><h2>You earned $100. Where did it go?</h2></div><p>This first version normalizes BLS mean consumer-unit spending against BLS mean pre-tax income. It does <strong>not</strong> pretend the remainder equals taxes or savings.</p></div>
+      <div class="hundred-card">
+        <div class="hundred-top"><div><span class="overline">START</span><strong>$100.00</strong><small>reported mean pre-tax income baseline</small></div><div class="dataset-note">BLS Consumer Expenditures • 2024 • MEAN</div></div>
+        <div id="hundredBars" class="hundred-bars"></div>
+        <div class="remainder"><span>Not assigned by this visualization</span><strong id="remainderValue">$—</strong><small>Not labeled “savings” or “taxes.” BLS did not publish 2024 after-tax income estimates.</small></div>
+      </div>
+    </section>
+
+    <section id="personalize" class="section shell personalize-section">
+      <div class="personalize-copy"><div class="kicker">MAKE THIS ABOUT ME</div><h2>Six answers.<br/>A much better picture.</h2><p>No account. No tax-return interrogation. We use the minimum inputs needed for a useful first estimate.</p><div class="privacy-note">Your answers stay in this browser in the MVP. They are not written to D1.</div></div>
+      <form id="profileForm" class="profile-card">
+        <div class="field-row"><label>ZIP code<input name="zip" inputmode="numeric" pattern="[0-9]{5}" maxlength="5" placeholder="46077" required /></label><label>Age<input name="age" type="number" min="18" max="100" placeholder="42" required /></label></div>
+        <label>Annual W-2 wage income<div class="money-input"><span>$</span><input name="income" type="number" min="0" step="100" placeholder="78000" required /></div></label>
+        <label>Household<select name="household"><option value="single">Single</option><option value="married_joint">Married / filing jointly</option><option value="head_household">Head of household</option></select></label>
+        <div class="field-row"><label>Children<input name="children" type="number" min="0" max="20" value="0" required /></label><label>Housing<select name="housing"><option value="rent">Rent</option><option value="own">Own</option></select></label></div>
+        <label>Monthly housing cost<div class="money-input"><span>$</span><input name="housingCost" type="number" min="0" step="25" placeholder="1500" required /></div></label>
+        <label class="check"><input name="car" type="checkbox" /><span>I own or finance a car</span></label>
+        <button class="button primary wide" type="submit">SHOW ME WHERE I STAND <span>→</span></button>
+        <small class="form-disclaimer">Estimate assumes W-2 wages, 2026 federal standard deduction and brackets, no federal credits, and no state/local income tax. Not tax advice.</small>
+      </form>
+    </section>
+
+    <section id="results" class="section shell results-section" hidden>
+      <div class="section-head"><div><div class="kicker">YOU vs AMERICA</div><h2>Your first-pass picture.</h2></div><button id="editProfile" class="button ghost small" type="button">EDIT INPUTS</button></div>
+      <div class="results-hero"><div><span>ESTIMATED TAKE-HOME BEFORE STATE/LOCAL TAX</span><strong id="takeHome">$—</strong><small id="takeHomeNote">—</small></div><div class="mini-stat"><span>Federal effective rate</span><strong id="effectiveRate">—</strong></div><div class="mini-stat"><span>Marginal federal bracket</span><strong id="marginalRate">—</strong></div><div class="mini-stat"><span>Employee FICA</span><strong id="ficaValue">—</strong></div></div>
+      <div class="compare-grid"><article class="compare-card"><div class="compare-head"><span>Housing burden</span><span id="housingStatus" class="status neutral">—</span></div><strong id="housingBurden">—</strong><p id="housingCompare">—</p></article><article class="compare-card"><div class="compare-head"><span>Federal tax mechanics</span><span class="status info">ESTIMATE</span></div><strong id="federalTax">—</strong><p id="taxExplainer">—</p></article><article class="compare-card"><div class="compare-head"><span>Data confidence</span><span class="status good">TRANSPARENT</span></div><strong>Inputs ≠ estimates</strong><p>We keep what you entered separate from calculated tax estimates and population statistics.</p></article></div>
+    </section>
+
+    <section id="found" class="section shell found-section">
+      <div class="section-head"><div><div class="kicker">FOUND MONEY</div><h2>Don’t show me 100 programs.<br/>Show me the best three.</h2></div><p>The ranking engine will use <strong>potential value × eligibility confidence ÷ effort</strong>. MVP screening intentionally avoids claiming eligibility before we have enough inputs.</p></div>
+      <div id="opportunityGrid" class="opportunity-grid">
+        <article class="opportunity"><span class="rank">01</span><div><span class="op-label">TAX CREDITS</span><h3>Child-related credits</h3><p>Shown after personalization when children are entered. Exact eligibility and value require more facts.</p></div><span class="status preview">SCREEN</span></article>
+        <article class="opportunity"><span class="rank">02</span><div><span class="op-label">WORK</span><h3>Employer match leakage</h3><p>Next data point to add: employer match + your contribution rate. This can uncover compensation you are already entitled to.</p></div><span class="status preview">NEXT</span></article>
+        <article class="opportunity"><span class="rank">03</span><div><span class="op-label">LOCAL HELP</span><h3>ZIP-aware benefits</h3><p>D1 program rules will narrow federal, state, and local programs instead of dumping a directory on you.</p></div><span class="status preview">NEXT</span></article>
+      </div>
+    </section>
+
+    <section class="section shell action-section"><div><div class="kicker">THE PRODUCT RULE</div><h2>Statistics → meaning → action.</h2><p>If a number cannot tell you what is happening, whether it is normal, or what to do next, it probably does not belong on the screen.</p></div><a class="button primary" href="#personalize">SHOW ME WHAT TO DO <span>→</span></a></section>
+  </main>
+
+  <footer class="shell footer"><a class="brand" href="#top"><span>AMERICA</span><b>//</b><span>EXPLAINED</span></a><p>Built to explain America without pretending complexity is simplicity.</p><span>v0.1 MVP</span></footer>
+  <script src="/app.js" defer></script>
+</body>
+</html>

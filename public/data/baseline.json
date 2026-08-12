@@ -1,0 +1,100 @@
+{
+  "generated_at": "2026-08-12T19:01:00Z",
+  "mode": "authoritative_static_fallback",
+  "headline_metrics": [
+    {
+      "key": "median_household_income",
+      "label": "Median household income",
+      "value": 83730,
+      "unit": "USD/year",
+      "statistic": "median",
+      "geography": "United States",
+      "year": 2024,
+      "source_name": "U.S. Census Bureau — Income in the United States: 2024",
+      "source_url": "https://www.census.gov/library/publications/2025/demo/p60-286.html",
+      "methodology": "CPS ASEC money income, pretax. National estimate.",
+      "confidence": "high"
+    },
+    {
+      "key": "median_gross_rent",
+      "label": "Median gross rent",
+      "value": 1487,
+      "unit": "USD/month",
+      "statistic": "median",
+      "geography": "United States",
+      "year": 2024,
+      "source_name": "U.S. Census Bureau — 2024 ACS 1-Year Estimates",
+      "source_url": "https://www.census.gov/newsroom/press-releases/2025/acs-1-year-estimates.html",
+      "methodology": "Gross rent includes rent plus renter-paid utilities. ACS 1-year estimate.",
+      "confidence": "high"
+    },
+    {
+      "key": "median_rent_income_share",
+      "label": "Median renter income spent on gross rent",
+      "value": 31,
+      "unit": "percent",
+      "statistic": "median",
+      "geography": "United States",
+      "year": 2024,
+      "source_name": "U.S. Census Bureau — 2024 ACS 1-Year Estimates",
+      "source_url": "https://www.census.gov/newsroom/press-releases/2025/acs-1-year-estimates.html",
+      "methodology": "Median gross rent as a percentage of household income among renters for whom the ratio is computed.",
+      "confidence": "high"
+    },
+    {
+      "key": "mean_annual_expenditures",
+      "label": "Average annual consumer expenditures",
+      "value": 78535,
+      "unit": "USD/year",
+      "statistic": "mean",
+      "geography": "United States",
+      "year": 2024,
+      "source_name": "U.S. Bureau of Labor Statistics — Consumer Expenditures 2024",
+      "source_url": "https://www.bls.gov/news.release/cesan.htm",
+      "methodology": "Mean annual expenditures for all consumer units. Not a median household budget.",
+      "confidence": "high"
+    }
+  ],
+  "spending": {
+    "source_year": 2024,
+    "source_name": "U.S. Bureau of Labor Statistics — Consumer Expenditures 2024",
+    "source_url": "https://www.bls.gov/news.release/cesan.htm",
+    "statistic": "mean",
+    "average_income_before_taxes": 104207,
+    "average_annual_expenditures": 78535,
+    "categories": [
+      { "key": "housing", "label": "Housing", "annual": 26266, "share_of_spending": 33.4, "per_100_income": 25.21 },
+      { "key": "transportation", "label": "Transportation", "annual": 13318, "share_of_spending": 17.0, "per_100_income": 12.78 },
+      { "key": "food", "label": "Food", "annual": 10169, "share_of_spending": 12.9, "per_100_income": 9.76 },
+      { "key": "insurance_pensions", "label": "Personal insurance & pensions", "annual": 9797, "share_of_spending": 12.5, "per_100_income": 9.40 },
+      { "key": "healthcare", "label": "Healthcare", "annual": 6197, "share_of_spending": 7.9, "per_100_income": 5.95 },
+      { "key": "entertainment", "label": "Entertainment", "annual": 3609, "share_of_spending": 4.6, "per_100_income": 3.46 },
+      { "key": "cash_contributions", "label": "Cash contributions", "annual": 2292, "share_of_spending": 2.9, "per_100_income": 2.20 },
+      { "key": "apparel", "label": "Apparel & services", "annual": 2001, "share_of_spending": 2.5, "per_100_income": 1.92 },
+      { "key": "education", "label": "Education", "annual": 1569, "share_of_spending": 2.0, "per_100_income": 1.51 },
+      { "key": "misc", "label": "Other reported categories", "annual": 3317, "share_of_spending": 4.2, "per_100_income": 3.18 }
+    ],
+    "note": "The $100 view normalizes BLS mean expenditures against BLS mean pre-tax income for the same consumer-unit population. The unassigned remainder is not labeled savings or taxes. BLS did not publish 2024 after-tax income estimates because its external tax model was not updated for 2024."
+  },
+  "tax_2026": {
+    "source_name": "Internal Revenue Service — 2026 inflation adjustments",
+    "source_url": "https://www.irs.gov/newsroom/irs-releases-tax-inflation-adjustments-for-tax-year-2026-including-amendments-from-the-one-big-beautiful-bill",
+    "standard_deduction": {
+      "single": 16100,
+      "married_joint": 32200,
+      "head_household": 24150
+    },
+    "brackets": {
+      "single": [[12400,0.10],[50400,0.12],[105700,0.22],[201775,0.24],[256225,0.32],[640600,0.35],[null,0.37]],
+      "married_joint": [[24800,0.10],[100800,0.12],[211400,0.22],[403550,0.24],[512450,0.32],[768700,0.35],[null,0.37]],
+      "head_household": [[17700,0.10],[67450,0.12],[105700,0.22],[201750,0.24],[256200,0.32],[640600,0.35],[null,0.37]]
+    }
+  },
+  "payroll_2026": {
+    "source_name": "Social Security Administration / IRS",
+    "source_url": "https://www.ssa.gov/OACT/cola/cbb.html",
+    "social_security_rate": 0.062,
+    "social_security_wage_base": 184500,
+    "medicare_rate": 0.0145
+  }
+}
