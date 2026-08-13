@@ -5,11 +5,11 @@
   "type": "module",
   "scripts": {
     "serve": "python3 -m http.server 4173 -d public",
-    "cf:dev": "npx wrangler pages dev public",
+    "cf:dev": "npx wrangler dev",
     "db:create": "npx wrangler d1 create america-explained-db",
     "db:migrate:local": "npx wrangler d1 migrations apply america-explained-db --local",
     "db:migrate:remote": "npx wrangler d1 migrations apply america-explained-db --remote",
-    "deploy": "npx wrangler pages deploy public"
+    "deploy": "npx wrangler deploy"
   },
   "devDependencies": {
     "wrangler": "^4.28.1"
