@@ -1,8 +1,12 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "america-explained",
-  "pages_build_output_dir": "./public",
-  "compatibility_date": "2026-08-12"
+  "main": "./src/index.ts",
+  "compatibility_date": "2026-08-12",
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS"
+  }
   // After creating D1, add:
   // "d1_databases": [{
   //   "binding": "DB",
