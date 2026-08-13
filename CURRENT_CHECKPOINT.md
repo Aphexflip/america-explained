@@ -3,12 +3,15 @@
 **Project:** AMERICA // EXPLAINED  
 **Date:** 2026-08-12  
 **Target domain:** `america.rsymo.com`  
-**Canonical repository:** `Aphexflip/america-explained`  
-**Current main commit:** `ae5c3a7698ea8ca3f5b50ffcdc392ae540c8ac0b`
+**Canonical repository:** `Aphexflip/america-explained`
 
 ## Current state
 
-The canonical GitHub repository is initialized and the v0.1 MVP has been seeded to `main`.
+The canonical GitHub repository is initialized and the v0.1 MVP is committed to `main`.
+
+Cloudflare was connected using the newer Workers Builds flow rather than the classic Pages Git-build flow. The first Cloudflare build failed during **Cloning** with `Failed: error occurred while fetching repository`, before install/build/deploy began.
+
+The repository has therefore been adapted to match the Worker Cloudflare actually created instead of forcing a restart.
 
 ### Built and committed
 
@@ -22,18 +25,43 @@ The canonical GitHub repository is initialized and the v0.1 MVP has been seeded 
 - Renter housing burden comparison vs 2024 Census median.
 - Found Money ranking concept/shell.
 - D1 schema and authoritative seed migration.
-- `/api/baseline` Pages Function that reads D1 when binding `DB` exists.
+- `/api/baseline` Worker route in `src/index.ts` that reads D1 when binding `DB` exists.
 - Static authoritative JSON fallback while D1 is not configured.
+- Worker static-assets binding via `assets.directory = ./public`.
 - `README.md`, `AGENTS.md`, `PROJECT_SPEC.md`, data model docs, and this checkpoint.
-- Cloudflare Pages config scaffold.
+
+## Cloudflare architecture now
+
+```text
+Cloudflare Worker: america-explained
+  ├─ src/index.ts
+  │   └─ /api/baseline → D1 when DB is bound
+  └─ ASSETS binding
+      └─ public/
+          ├─ index.html
+          ├─ app.js
+          ├─ styles.css
+          └─ data/baseline.json fallback
+```
+
+`wrangler.jsonc` now uses:
+
+- `main: ./src/index.ts`
+- `assets.directory: ./public`
+- `assets.binding: ASSETS`
+
+`package.json` now uses `wrangler dev` and `wrangler deploy`.
+
+The obsolete Pages Function at `functions/api/baseline.ts` was removed.
 
 ## Validation completed
 
-- GitHub recursive tree verified after commit; all intended MVP files are present on `main`.
-- Stale unused root React scaffold `index.html` was removed before import.
-- `public/app.js` passes `node --check`.
+- GitHub recursive tree verified after MVP import.
+- Stale unused root React scaffold `index.html` removed before import.
+- `public/app.js` previously passed `node --check`.
 - `public/data/baseline.json` parses successfully.
 - `migrations/0001_initial.sql` executes successfully against SQLite in-memory validation.
+- Cloudflare failure occurred before code execution; the current blocker is repository fetch access, not app code.
 
 ## Authoritative seeded facts
 
@@ -51,20 +79,20 @@ BLS did not publish 2024 federal/state tax estimates or after-tax income in CE b
 
 ## Current blocker
 
-No code blocker. Cloudflare account configuration is the next external step.
+Cloudflare Workers Builds cannot currently fetch/clone `Aphexflip/america-explained`.
+
+The build log shows initialization succeeded, then cloning ran for roughly two minutes and failed before install/deploy.
 
 ## Exact next human action
 
-Connect `Aphexflip/america-explained` to Cloudflare Pages:
+1. Cloudflare → **Workers & Pages → america-explained → Settings → Builds**.
+2. Under **Git Repository**, choose **Manage**.
+3. In GitHub, configure the **Cloudflare Workers & Pages** GitHub App.
+4. If repository access is set to selected repositories, make sure **`Aphexflip/america-explained`** is selected, then save.
+5. Return to Cloudflare and retry the build.
+6. If the repository was already authorized, retry once because a fetch failure can be transient. Do not change app code for this clone-stage error.
 
-1. Cloudflare Dashboard → **Workers & Pages** → **Create** → **Pages** → **Connect to Git**.
-2. Select `Aphexflip/america-explained`.
-3. Framework preset: **None**.
-4. Build command: **blank**.
-5. Build output directory: `public`.
-6. Deploy the first Pages build.
-
-Then create D1 database `america-explained-db`, bind it as `DB`, apply `migrations/0001_initial.sql`, verify `/api/baseline`, and attach `america.rsymo.com`.
+After a successful Worker deploy: create D1 database `america-explained-db`, bind it as `DB`, apply `migrations/0001_initial.sql`, verify `/api/baseline`, and attach `america.rsymo.com`.
 
 ## Next product work after deployment
 
