@@ -9,7 +9,8 @@
     "db:create": "npx wrangler d1 create america-explained-db",
     "db:migrate:local": "npx wrangler d1 migrations apply america-explained-db --local",
     "db:migrate:remote": "npx wrangler d1 migrations apply america-explained-db --remote",
-    "deploy": "npx wrangler deploy"
+    "deploy": "npx wrangler deploy",
+    "test": "node --check public/app.js && node -e \"JSON.parse(require('fs').readFileSync('public/data/baseline.json','utf8')); console.log('baseline.json valid')\""
   },
   "devDependencies": {
     "wrangler": "^4.28.1"
